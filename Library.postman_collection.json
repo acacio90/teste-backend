@@ -338,7 +338,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/books/2",
+							"raw": "localhost:8000/loans/2",
 							"host": [
 								"localhost"
 							],
