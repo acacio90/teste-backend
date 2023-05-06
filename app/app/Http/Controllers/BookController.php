@@ -54,6 +54,6 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         $book->delete();
 
-        return 204;
+        return response()->noContent();
     }
 }

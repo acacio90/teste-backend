@@ -10,4 +10,9 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'email'];
+
+    protected static function newFactory()
+    {
+        return \Database\Factories\StudentFactory::new();
+    }
 }

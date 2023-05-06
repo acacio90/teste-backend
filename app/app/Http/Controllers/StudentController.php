@@ -54,6 +54,6 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return 204;
+        return response()->noContent();
     }
 }

@@ -10,5 +10,10 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'author', 'quantity'];
+
+    protected static function newFactory()
+    {
+        return \Database\Factories\BookFactory::new();
+    }
 }
     
