@@ -54,6 +54,6 @@ class LoanController extends Controller
         $loan = Loan::findOrFail($id);
         $loan->delete();
 
-        return 204;
+        return response()->noContent();
     }
 }

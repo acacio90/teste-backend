@@ -103,42 +103,48 @@ class LoanTest extends TestCase
     }
     
 
-    // public function testUpdateLoan()
-    // {
-    //     $book = Book::factory()->create();
-    //     $student = Student::factory()->create();
+    public function testUpdateLoan()
+    {
+        $book = Book::factory()->create();
+        $student = Student::factory()->create();
 
-    //     $loan = Loan::factory()->create([
-    //         'book_id' => $book->id,
-    //         'student_id' => $student->id
-    //     ]);
+        $loan = Loan::factory()->create([
+            'book_id' => $book->id,
+            'student_id' => $student->id
+        ]);
 
-    //     $data = [
-    //         'book_id' => $loan->book_id,
-    //         'student_id' => $loan->student_id,
-    //         'loan_date' => $loan->loan_date->addDays(5),
-    //         'return_date' => $loan->return_date->addDays(10)
-    //     ];
+        $newData = [
+            'book_id' => $book->id,
+            'student_id' => $student->id,
+            'loan_date' => now()->toDateString(),
+            'return_date' => now()->toDateString(),
+        ];
 
-    //     $response = $this->json('PUT', "/loans/{$loan->id}", $data);
+        $responseUpdate = $this->json('PUT', "/loans/{$loan->id}", $newData);
 
-    //     $response->assertStatus(200)
-    //         ->assertJson([
-    //             'id' => $loan->id,
-    //             'book_id' => $book->id,
-    //             'student_id' => $student->id,
-    //             'loan_date' => $loan->loan_date->format('Y-m-d H:i:s'),
-    //             'return_date' => $loan->return_date->format('Y-m-d H:i:s')
-    //         ]);
-    // }
+        $responseUpdate->assertStatus(200)
+            ->assertJson([
+                'id' => $loan->id,
+                'student_id' => $student->id,
+                'book_id' => $book->id,
+                'loan_date' => now()->toDateString(),
+                'return_date' => now()->toDateString()
+            ]);
+    }
 
 
-    // public function testDeleteLoan()
-    // {
-    //     $loan = Loan::factory()->create();
+    public function testDeleteLoan()
+    {
+        $book = Book::factory()->create();
+        $student = Student::factory()->create();
 
-    //     $response = $this->json('DELETE', "/loans/{$loan->id}");
+        $loan = Loan::factory()->create([
+            'book_id' => $book->id,
+            'student_id' => $student->id
+        ]);
 
-    //     $response->assertStatus(204);
-    // }
+        $response = $this->json('DELETE', "/loans/{$loan->id}");
+
+        $response->assertStatus(204);
+    }
 }
